@@ -1,0 +1,956 @@
+<?xml version='1.0' encoding='utf-8'?>
+<roblox xmlns:xmime="http://www.w3.org/2005/05/xmlmime" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.roblox.com/roblox.xsd" version="4">
+	<External>null</External>
+	<External>nil</External>
+	<Item class="Workspace" referent="RBX_WORKSPACE">
+		<Properties>
+			<string name="Name">Workspace</string>
+		</Properties>
+		<Item class="Part" referent="RBX1B938023">
+			<Properties>
+				<string name="Name">Baseplate</string>
+				<bool name="Anchored">true</bool>
+				<Vector3 name="Size">
+					<X>512</X>
+					<Y>20</Y>
+					<Z>512</Z>
+				</Vector3>
+				<CoordinateFrame name="CFrame">
+					<X>0</X>
+					<Y>-10</Y>
+					<Z>0</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<Color3uint8 name="Color3uint8">5472867</Color3uint8>
+			</Properties>
+		</Item>
+		<Item class="Model" referent="RBX_HOUSE">
+			<Properties>
+				<string name="Name">FamilyHome</string>
+			</Properties>
+			<Item class="Part" referent="RBX8929633C">
+				<Properties>
+					<string name="Name">Floor</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>40</X>
+						<Y>1</Y>
+						<Z>30</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>0</X>
+						<Y>0.5</Y>
+						<Z>0</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">4610680</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBXF85C1B5F">
+				<Properties>
+					<string name="Name">WallBack</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>40</X>
+						<Y>12</Y>
+						<Z>1</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>0</X>
+						<Y>6.5</Y>
+						<Z>14.5</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">15134960</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBXA9C46C1B">
+				<Properties>
+					<string name="Name">WallLeft</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>1</X>
+						<Y>12</Y>
+						<Z>28</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>-19.5</X>
+						<Y>6.5</Y>
+						<Z>0</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">15134960</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBXACD23775">
+				<Properties>
+					<string name="Name">WallRight</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>1</X>
+						<Y>12</Y>
+						<Z>28</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>19.5</X>
+						<Y>6.5</Y>
+						<Z>0</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">15134960</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBX10F768B5">
+				<Properties>
+					<string name="Name">WallFrontLeft</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>12</X>
+						<Y>12</Y>
+						<Z>1</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>-14</X>
+						<Y>6.5</Y>
+						<Z>-14.5</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">15134960</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBXD89DAD5C">
+				<Properties>
+					<string name="Name">WallFrontRight</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>22</X>
+						<Y>12</Y>
+						<Z>1</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>9</X>
+						<Y>6.5</Y>
+						<Z>-14.5</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">15134960</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBXA060A941">
+				<Properties>
+					<string name="Name">WallFrontTop</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>6</X>
+						<Y>4</Y>
+						<Z>1</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>-5</X>
+						<Y>10.5</Y>
+						<Z>-14.5</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">15134960</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBX08B7E2B3">
+				<Properties>
+					<string name="Name">Door</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>6</X>
+						<Y>8</Y>
+						<Z>0.5</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>-5</X>
+						<Y>4.5</Y>
+						<Z>-14.5</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">2636900</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBX43473980">
+				<Properties>
+					<string name="Name">WallInt1</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>15</X>
+						<Y>12</Y>
+						<Z>1</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>-12</X>
+						<Y>6.5</Y>
+						<Z>0</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">15134960</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBX46A70500">
+				<Properties>
+					<string name="Name">WallInt2</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>1</X>
+						<Y>12</Y>
+						<Z>14</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>-4.5</X>
+						<Y>6.5</Y>
+						<Z>7.5</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">15134960</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBX242708E7">
+				<Properties>
+					<string name="Name">WallInt3</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>10</X>
+						<Y>12</Y>
+						<Z>1</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>0.5</X>
+						<Y>6.5</Y>
+						<Z>0</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">15134960</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBX29509CBC">
+				<Properties>
+					<string name="Name">WallInt4</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>1</X>
+						<Y>12</Y>
+						<Z>14</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>5.5</X>
+						<Y>6.5</Y>
+						<Z>7.5</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">15134960</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBX0AAF4148">
+				<Properties>
+					<string name="Name">RoofFront</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>42</X>
+						<Y>1</Y>
+						<Z>19.75742462236236</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>0</X>
+						<Y>15</Y>
+						<Z>-7.5</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>0.9063077870366499</R11>
+						<R12>0.42261826174069944</R12>
+						<R20>0</R20>
+						<R21>-0.42261826174069944</R21>
+						<R22>0.9063077870366499</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">2631760</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBX65D98989">
+				<Properties>
+					<string name="Name">RoofBack</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>42</X>
+						<Y>1</Y>
+						<Z>19.75742462236236</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>0</X>
+						<Y>15</Y>
+						<Z>7.5</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>0.9063077870366499</R11>
+						<R12>-0.42261826174069944</R12>
+						<R20>0</R20>
+						<R21>0.42261826174069944</R21>
+						<R22>0.9063077870366499</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">2631760</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBX3606BEC8">
+				<Properties>
+					<string name="Name">SofaBase</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>8</X>
+						<Y>1.5</Y>
+						<Z>3</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>12</X>
+						<Y>1.75</Y>
+						<Z>-8</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">7887430</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBX4936424C">
+				<Properties>
+					<string name="Name">SofaBack</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>8</X>
+						<Y>3</Y>
+						<Z>1</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>12</X>
+						<Y>3.5</Y>
+						<Z>-9</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">7887430</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBX1C2EF3EF">
+				<Properties>
+					<string name="Name">SofaArmLeft</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>1</X>
+						<Y>2.5</Y>
+						<Z>3</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>8.5</X>
+						<Y>2.25</Y>
+						<Z>-8</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">7887430</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBX9F545C2E">
+				<Properties>
+					<string name="Name">SofaArmRight</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>1</X>
+						<Y>2.5</Y>
+						<Z>3</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>15.5</X>
+						<Y>2.25</Y>
+						<Z>-8</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">7887430</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBX79AAC258">
+				<Properties>
+					<string name="Name">CoffeeTableTop</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>5</X>
+						<Y>0.5</Y>
+						<Z>3</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>12</X>
+						<Y>2.25</Y>
+						<Z>-4</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">2636900</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBXD4AB7C01">
+				<Properties>
+					<string name="Name">CoffeeTableLeg1</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>0.5</X>
+						<Y>1.25</Y>
+						<Z>0.5</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>10</X>
+						<Y>1.625</Y>
+						<Z>-3</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">2636900</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBX1059EE06">
+				<Properties>
+					<string name="Name">CoffeeTableLeg2</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>0.5</X>
+						<Y>1.25</Y>
+						<Z>0.5</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>14</X>
+						<Y>1.625</Y>
+						<Z>-3</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">2636900</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBXE85FB00C">
+				<Properties>
+					<string name="Name">CoffeeTableLeg3</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>0.5</X>
+						<Y>1.25</Y>
+						<Z>0.5</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>10</X>
+						<Y>1.625</Y>
+						<Z>-5</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">2636900</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBX3F53C77F">
+				<Properties>
+					<string name="Name">CoffeeTableLeg4</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>0.5</X>
+						<Y>1.25</Y>
+						<Z>0.5</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>14</X>
+						<Y>1.625</Y>
+						<Z>-5</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">2636900</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBX9B82A870">
+				<Properties>
+					<string name="Name">TV</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>6</X>
+						<Y>3.5</Y>
+						<Z>0.5</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>12</X>
+						<Y>5</Y>
+						<Z>-0.5</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">1315860</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBXABCF878E">
+				<Properties>
+					<string name="Name">TVStand</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>7</X>
+						<Y>2</Y>
+						<Z>2</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>12</X>
+						<Y>2</Y>
+						<Z>-0.5</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">3947580</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBXF712B350">
+				<Properties>
+					<string name="Name">BedFrame</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>6</X>
+						<Y>1</Y>
+						<Z>8</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>-12</X>
+						<Y>1.5</Y>
+						<Z>10</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">2636900</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBXFB98B51A">
+				<Properties>
+					<string name="Name">Mattress</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>5.5</X>
+						<Y>1</Y>
+						<Z>7.5</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>-12</X>
+						<Y>2.5</Y>
+						<Z>10</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">14469320</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBXFA57257F">
+				<Properties>
+					<string name="Name">Pillow</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>4</X>
+						<Y>0.5</Y>
+						<Z>1.5</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>-12</X>
+						<Y>3.25</Y>
+						<Z>13</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">16777215</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBXEB5CA104">
+				<Properties>
+					<string name="Name">CounterBase</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>12</X>
+						<Y>3.5</Y>
+						<Z>3</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>12</X>
+						<Y>2.75</Y>
+						<Z>12</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">6584470</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBX719E8D1C">
+				<Properties>
+					<string name="Name">CounterTop</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>12.5</X>
+						<Y>0.5</Y>
+						<Z>3.5</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>12</X>
+						<Y>4.75</Y>
+						<Z>12</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">3289650</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBXF8E23C79">
+				<Properties>
+					<string name="Name">Fridge</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>3</X>
+						<Y>8</Y>
+						<Z>3</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>17</X>
+						<Y>5</Y>
+						<Z>12</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">13158600</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBX8DABABAE">
+				<Properties>
+					<string name="Name">ToiletBase</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>1.5</X>
+						<Y>1.5</Y>
+						<Z>2</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>1</X>
+						<Y>1.75</Y>
+						<Z>13</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">16777215</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBX5C526CB4">
+				<Properties>
+					<string name="Name">ToiletTank</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>2</X>
+						<Y>2</Y>
+						<Z>1</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>1</X>
+						<Y>3.5</Y>
+						<Z>13.5</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">16777215</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBX9DA0E073">
+				<Properties>
+					<string name="Name">BathroomCounter</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>3</X>
+						<Y>3.5</Y>
+						<Z>2</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>4</X>
+						<Y>2.75</Y>
+						<Z>10</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">6584470</Color3uint8>
+				</Properties>
+			</Item>
+			<Item class="Part" referent="RBX6ABE96DE">
+				<Properties>
+					<string name="Name">BathroomSink</string>
+					<bool name="Anchored">true</bool>
+					<Vector3 name="Size">
+						<X>2</X>
+						<Y>0.5</Y>
+						<Z>1.5</Z>
+					</Vector3>
+					<CoordinateFrame name="CFrame">
+						<X>4</X>
+						<Y>4.75</Y>
+						<Z>10</Z>
+						<R00>1</R00>
+						<R01>0</R01>
+						<R02>0</R02>
+						<R10>0</R10>
+						<R11>1</R11>
+						<R12>0</R12>
+						<R20>0</R20>
+						<R21>0</R21>
+						<R22>1</R22>
+					</CoordinateFrame>
+					<Color3uint8 name="Color3uint8">16777215</Color3uint8>
+				</Properties>
+			</Item>
+		</Item>
+	</Item>
+	<Item class="Lighting" referent="RBX_LIGHTING">
+		<Properties>
+			<string name="Name">Lighting</string>
+		</Properties>
+	</Item>
+</roblox>

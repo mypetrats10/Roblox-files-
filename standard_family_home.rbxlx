@@ -947,10 +947,43 @@
 				</Properties>
 			</Item>
 		</Item>
-	</Item>
+	<Item class="Part" referent="RBX8D088FEE31B344CFA5AD7CA9557CC732"><Properties><string name="Name">Yard</string><bool name="Anchored">true</bool><Vector3 name="Size"><X>100</X><Y>1</Y><Z>100</Z></Vector3><CoordinateFrame name="CFrame"><X>0</X><Y>-0.5</Y><Z>-40</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3uint8 name="Color3uint8">3381555</Color3uint8></Properties></Item><Item class="Part" referent="RBX143A7516BE964F9089703118DD73B811"><Properties><string name="Name">BushFenceFront</string><bool name="Anchored">true</bool><Vector3 name="Size"><X>100</X><Y>4</Y><Z>2</Z></Vector3><CoordinateFrame name="CFrame"><X>0</X><Y>1.5</Y><Z>-89</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3uint8 name="Color3uint8">2056980</Color3uint8></Properties></Item><Item class="Part" referent="RBXAF4D2329833B4C78A03B7601DC7F4367"><Properties><string name="Name">BushFenceBack</string><bool name="Anchored">true</bool><Vector3 name="Size"><X>100</X><Y>4</Y><Z>2</Z></Vector3><CoordinateFrame name="CFrame"><X>0</X><Y>1.5</Y><Z>9</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3uint8 name="Color3uint8">2056980</Color3uint8></Properties></Item><Item class="Part" referent="RBXD31BC66764C34868B3DB8A24E499254F"><Properties><string name="Name">BushFenceLeft</string><bool name="Anchored">true</bool><Vector3 name="Size"><X>2</X><Y>4</Y><Z>100</Z></Vector3><CoordinateFrame name="CFrame"><X>-49</X><Y>1.5</Y><Z>-40</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3uint8 name="Color3uint8">2056980</Color3uint8></Properties></Item><Item class="Part" referent="RBXF62B476A7AA94172AF0BA3A8581FE698"><Properties><string name="Name">BushFenceRight</string><bool name="Anchored">true</bool><Vector3 name="Size"><X>2</X><Y>4</Y><Z>100</Z></Vector3><CoordinateFrame name="CFrame"><X>49</X><Y>1.5</Y><Z>-40</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3uint8 name="Color3uint8">2056980</Color3uint8></Properties></Item><Item class="Part" referent="RBX4DFBE6C18A2F40319AB989AFF33807C3"><Properties><string name="Name">Pool</string><bool name="Anchored">true</bool><Vector3 name="Size"><X>30</X><Y>0.5</Y><Z>20</Z></Vector3><CoordinateFrame name="CFrame"><X>0</X><Y>-0.25</Y><Z>-40</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3uint8 name="Color3uint8">8900331</Color3uint8><float name="Transparency">0.5</float></Properties></Item><Item class="Part" referent="RBX8D444FF48BC14BC2A12D5A6C6DE8944F"><Properties><string name="Name">PoolCover</string><bool name="Anchored">true</bool><Vector3 name="Size"><X>30</X><Y>0.2</Y><Z>20</Z></Vector3><CoordinateFrame name="CFrame"><X>0</X><Y>0</Y><Z>-40</Z><R00>1</R00><R01>0</R01><R02>0</R02><R10>0</R10><R11>1</R11><R12>0</R12><R20>0</R20><R21>0</R21><R22>1</R22></CoordinateFrame><Color3uint8 name="Color3uint8">8421504</Color3uint8></Properties></Item></Item>
 	<Item class="Lighting" referent="RBX_LIGHTING">
 		<Properties>
 			<string name="Name">Lighting</string>
 		</Properties>
 	</Item>
-</roblox>
+<Item class="ReplicatedStorage" referent="RBX00AF8E8502434E92A6320BD6339CE4D2"><Properties><string name="Name">ReplicatedStorage</string></Properties><Item class="RemoteEvent" referent="RBXC9C96900ED5446598A99658873B7C4D0"><Properties><string name="Name">TogglePoolCover</string></Properties></Item></Item><Item class="StarterGui" referent="RBXA1452B83BDC44DE38A4948D92663A045"><Properties><string name="Name">StarterGui</string></Properties><Item class="ScreenGui" referent="RBX2E3B53E85E1C457F8523B943C2DC40C8"><Properties><string name="Name">PoolControlGui</string></Properties><Item class="Frame" referent="RBX5C3B4383931E409499433FB97F0C3CD0"><Properties><string name="Name">TabletFrame</string><UDim2 name="Size"><XS>0</XS><XO>200</XO><YS>0</YS><YO>150</YO></UDim2><UDim2 name="Position"><XS>0.5</XS><XO>-100</XO><YS>0.8</YS><YO>0</YO></UDim2><Color3uint8 name="BackgroundColor3">4210752</Color3uint8></Properties><Item class="TextButton" referent="RBX49A1C25F8DB444C5B2E5335A0960ABD0"><Properties><string name="Name">ToggleButton</string><string name="Text">Toggle Pool Cover</string><UDim2 name="Size"><XS>0.8</XS><XO>0</XO><YS>0.4</YS><YO>0</YO></UDim2><UDim2 name="Position"><XS>0.1</XS><XO>0</XO><YS>0.3</YS><YO>0</YO></UDim2></Properties><Item class="LocalScript" referent="RBX7B3A7038919344ADAE5D874683450AC6"><Properties><string name="Name">ToggleScript</string><ProtectedString name="Source">
+local button = script.Parent
+local rs = game:GetService("ReplicatedStorage")
+local event = rs:WaitForChild("TogglePoolCover")
+
+button.MouseButton1Click:Connect(function()
+    event:FireServer()
+end)
+    </ProtectedString></Properties></Item></Item></Item></Item></Item><Item class="ServerScriptService" referent="RBX9A92C4C134574AEDB4F35AB9804BF6E2"><Properties><string name="Name">ServerScriptService</string></Properties><Item class="Script" referent="RBX48E9675D73D44D00A8135E7A97027D09"><Properties><string name="Name">PoolCoverHandler</string><ProtectedString name="Source">
+local rs = game:GetService("ReplicatedStorage")
+local event = rs:WaitForChild("TogglePoolCover")
+local ts = game:GetService("TweenService")
+local cover = game.Workspace:WaitForChild("PoolCover")
+
+local isCovered = true
+local tweenInfo = TweenInfo.new(2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out)
+
+-- When covered, X is 30, Z is 20. CFrame is (0, 0, -40)
+-- When open, we can scale it to X=0.1, or move it out of the way. Let's scale and move it.
+local closedSize = Vector3.new(30, 0.2, 20)
+local closedCFrame = CFrame.new(0, 0, -40)
+
+local openSize = Vector3.new(0.2, 0.2, 20)
+local openCFrame = CFrame.new(14.9, 0, -40)
+
+event.OnServerEvent:Connect(function()
+    isCovered = not isCovered
+    local targetSize = isCovered and closedSize or openSize
+    local targetCFrame = isCovered and closedCFrame or openCFrame
+
+    local tween = ts:Create(cover, tweenInfo, {Size = targetSize, CFrame = targetCFrame})
+    tween:Play()
+end)
+    </ProtectedString></Properties></Item></Item></roblox>

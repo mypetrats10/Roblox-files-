@@ -5,7 +5,8 @@ A button opens a form for the seed, why it got that ranking, and images. Instant
 Complete asks for the map, the building and where the flare gun is.
 
 Slash commands:
-  /panel    (admins) post the submission panel in this channel
+  /panel       (admins) post the submission panel in this channel
+  /checksetup  (admins) show which channel each ranking posts to
   /lookup   check whether a seed is already catalogued
   /list     browse catalogued seeds, optionally by ranking
   /stats    how many seeds are in each ranking
@@ -32,6 +33,11 @@ DB_PATH = os.getenv("DB_PATH", "seeds.db")
 WEBHOOKS = {t: os.getenv(f"WEBHOOK_{t.upper()}", "").strip() for t in TIERS}
 MAPS = [m.strip() for m in os.getenv("MAPS", "").split(",") if m.strip()][:25]
 MAX_IMAGES = 10
+BOT_NAME = os.getenv("BOT_NAME", "").strip()  # name on every channel post; defaults to the bot's own
+CHECK_CHANNEL_NAMES = os.getenv("CHECK_CHANNEL_NAMES", "true").lower() != "false"
+# A tier's channel name must contain this word, e.g. #great-seeds for "great"
+CHANNEL_KEYWORDS = {"mediocre": "mediocre", "good": "good", "great": "great",
+                    "amazing": "amazing", "perfect": "perfect", "instant": "instant"}
 IMAGE_TYPES = (".png", ".jpg", ".jpeg", ".gif", ".webp")
 
 TIER_CHOICES = [app_commands.Choice(name=v["label"], value=k) for k, v in TIERS.items()]
@@ -84,6 +90,27 @@ def duplicate_message(existing) -> str:
             f"**{TIERS[existing.tier]['label']}** by {existing.submitter_name}.{where}")
 
 
+def seed_post(s, files=()) -> discord.ui.LayoutView:
+    """The channel post: one card holding the details and every image, sent as one message."""
+    tier = TIERS[s.tier]
+    esc = discord.utils.escape_markdown
+    header = discord.ui.TextDisplay(
+        f"## Seed: {esc(s.seed)}\n**{tier['label']}** · submitted by <@{s.submitter_id}>")
+    if s.tier == "instant":
+        details = (f"**Map:** {esc(s.map)}\n**Building:** {esc(s.building)}\n"
+                   f"**Where the flare gun is:** {esc(s.location)}")
+    else:
+        details = f"**Why it's {tier['label']}:** {esc(s.reason)}"
+    items = [header, discord.ui.Separator(), discord.ui.TextDisplay(details)]
+    if files:
+        items.append(discord.ui.MediaGallery(
+            *[discord.MediaGalleryItem(f"attachment://{f.filename}") for f in files]))
+    items.append(discord.ui.TextDisplay(f"-# Catalogue entry #{s.id} · <t:{s.created_at}:f>"))
+    view = discord.ui.LayoutView(timeout=None)
+    view.add_item(discord.ui.Container(*items, accent_colour=tier["color"]))
+    return view
+
+
 # ---------- the bot ----------
 
 class SeedBot(discord.Client):
@@ -91,6 +118,51 @@ class SeedBot(discord.Client):
         super().__init__(intents=discord.Intents.default())
         self.tree = app_commands.CommandTree(self)
         self.http_session: aiohttp.ClientSession | None = None
+        self.channel_ids: dict[str, int] = {}   # tier -> channel its webhook posts to
+        self.problems: dict[str, str] = {}      # tier -> why it can't take seeds right now
+
+    async def verify_webhooks(self) -> None:
+        """Check each ranking's webhook exists and posts to its own, correctly named channel."""
+        self.channel_ids.clear()
+        self.problems.clear()
+        for tier, url in WEBHOOKS.items():
+            label = TIERS[tier]["label"]
+            if not url:
+                self.problems[tier] = f"no webhook set (WEBHOOK_{tier.upper()} in .env)"
+                continue
+            try:
+                hook = await discord.Webhook.from_url(url, session=self.http_session).fetch(prefer_auth=False)
+            except (discord.HTTPException, ValueError):
+                self.problems[tier] = f"the WEBHOOK_{tier.upper()} URL is invalid or the webhook was deleted"
+                continue
+            channel = self.get_channel(hook.channel_id)
+            name = channel.name if channel else None
+            if CHECK_CHANNEL_NAMES:
+                if name is None:
+                    self.problems[tier] = ("its webhook is in a channel the bot can't see. "
+                                           "Make sure the bot is in that server")
+                    continue
+                if CHANNEL_KEYWORDS[tier] not in name.lower():
+                    self.problems[tier] = (f"its webhook posts to #{name}, which doesn't look like the "
+                                           f"{label} channel (the name should contain "
+                                           f"\"{CHANNEL_KEYWORDS[tier]}\")")
+                    continue
+            self.channel_ids[tier] = hook.channel_id
+        # Two rankings must never share a channel.
+        seen: dict[int, str] = {}
+        for tier, cid in list(self.channel_ids.items()):
+            if cid in seen:
+                for t in (tier, seen[cid]):
+                    self.problems[t] = (f"{TIERS[tier]['label']} and {TIERS[seen[cid]]['label']} "
+                                        "webhooks post to the same channel")
+                    self.channel_ids.pop(t, None)
+            else:
+                seen[cid] = tier
+
+    def post_identity(self) -> dict:
+        """Same name and picture on every post, so Discord groups them under one header."""
+        return {"username": BOT_NAME or self.user.display_name,
+                "avatar_url": self.user.display_avatar.url}
 
     async def setup_hook(self):
         self.http_session = aiohttp.ClientSession()
@@ -119,10 +191,12 @@ bot = SeedBot()
 
 @bot.event
 async def on_ready():
-    missing = [t for t, u in WEBHOOKS.items() if not u]
     print(f"Logged in as {bot.user}. Seeds catalogued: {sum(db.counts().values())}")
-    if missing:
-        print(f"Warning: no webhook set for: {', '.join(missing)}")
+    await bot.verify_webhooks()
+    for tier, cid in bot.channel_ids.items():
+        print(f"  {TIERS[tier]['label']:<17} -> #{bot.get_channel(cid) or cid}")
+    for tier, why in bot.problems.items():
+        print(f"  {TIERS[tier]['label']:<17} BLOCKED: {why}")
 
 
 async def catalogue(interaction: discord.Interaction, *, seed: str, tier: str, reason: str,
@@ -137,9 +211,10 @@ async def catalogue(interaction: discord.Interaction, *, seed: str, tier: str, r
         return
 
     hook = bot.webhook(tier)
-    if hook is None:
-        await send(f"No webhook is set up for **{label}** yet. Ask a server admin to add "
-                   f"WEBHOOK_{tier.upper()} to the bot's .env file.", ephemeral=True)
+    if hook is None or tier in bot.problems or tier not in bot.channel_ids:
+        why = bot.problems.get(tier, "it hasn't been checked yet")
+        await send(f"**{label}** seeds can't be submitted right now: {why}. "
+                   "Ask a server admin to fix it and run /checksetup.", ephemeral=True)
         return
 
     bad = [a.filename for a in images if not a.filename.lower().endswith(IMAGE_TYPES)]
@@ -159,11 +234,18 @@ async def catalogue(interaction: discord.Interaction, *, seed: str, tier: str, r
         return
 
     try:
-        files = [await a.to_file() for a in images]
-        msg = await hook.send(
-            embed=seed_embed(entry, image_name=files[0].filename if files else None),
-            files=files, wait=True, allowed_mentions=discord.AllowedMentions.none(),
-        )
+        files = []
+        for i, a in enumerate(images, 1):
+            f = await a.to_file()
+            f.filename = f"seed-{entry.id}-{i}{os.path.splitext(a.filename)[1].lower()}"
+            files.append(f)
+        msg = await hook.send(view=seed_post(entry, files), files=files, wait=True,
+                              allowed_mentions=discord.AllowedMentions.none(), **bot.post_identity())
+        if msg.channel.id != bot.channel_ids[tier]:
+            # Webhook was moved to another channel since the last check: undo and block.
+            await hook.delete_message(msg.id)
+            bot.problems[tier] = "its webhook was moved to a different channel"
+            raise RuntimeError("webhook moved")
         db.set_message(entry.id, msg.id, msg.jump_url, [a.url for a in msg.attachments])
     except discord.HTTPException as err:
         db.remove(seed)  # keep the database and the channels in step
@@ -173,6 +255,11 @@ async def catalogue(interaction: discord.Interaction, *, seed: str, tier: str, r
             reason_text = f"Discord returned error {err.status}. Check that the webhook URL is still valid"
         await send(f"Couldn't post to the {label} channel: {reason_text}. The seed wasn't saved.",
                    ephemeral=True)
+        return
+    except RuntimeError:
+        db.remove(seed)
+        await send(f"The {label} webhook now points at a different channel, so the seed wasn't "
+                   "saved. Ask a server admin to run /checksetup.", ephemeral=True)
         return
 
     await send(f"Catalogued **{entry.seed}** as **{label}**. {msg.jump_url}", ephemeral=True)
@@ -275,6 +362,20 @@ async def panel(interaction: discord.Interaction):
     await interaction.channel.send(embed=panel_embed(), view=PanelView())
     await interaction.response.send_message(
         "Panel posted. Pin it so it stays easy to find.", ephemeral=True)
+
+
+@bot.tree.command(description="Check which channel each ranking posts to (admins)")
+@app_commands.default_permissions(manage_guild=True)
+async def checksetup(interaction: discord.Interaction):
+    await interaction.response.defer(ephemeral=True, thinking=True)
+    await bot.verify_webhooks()
+    lines = []
+    for tier, v in TIERS.items():
+        if tier in bot.channel_ids:
+            lines.append(f"✅ **{v['label']}** → <#{bot.channel_ids[tier]}>")
+        else:
+            lines.append(f"❌ **{v['label']}**: {bot.problems.get(tier, 'not checked')}")
+    await interaction.followup.send("\n".join(lines), ephemeral=True)
 
 
 async def send_lookup(interaction: discord.Interaction, seed: str):

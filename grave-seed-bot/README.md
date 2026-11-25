@@ -9,7 +9,7 @@ A Discord bot that keeps one shared database of seeds and posts each new seed to
 | Great | #great-seeds |
 | Amazing | #amazing-seeds |
 | Perfect | #perfect-seeds |
-| Instant Complete | #instant-complete-seeds (create this one) |
+| Instant Complete | #instant-complete-seeds (create this one; the name must contain "instant") |
 
 ## Submitting seeds
 
@@ -28,7 +28,11 @@ Clicking a ranking opens a form:
 | Mediocre to Perfect | Seed, why it's that ranking, images (optional, up to 10) |
 | Instant Complete | Seed, map, building, where the flare gun is, images (optional, up to 10) |
 
-The images are attached to the seed's post in its ranking channel.
+## How seeds are posted
+
+- **One message per seed.** The details and all the images sit together in one card, coloured by ranking. Nothing is split across messages and no image appears twice.
+- **One name.** Every post uses the same name and picture (the bot's, or `BOT_NAME`), so Discord groups back-to-back posts under a single header.
+- **Always the right channel.** When the bot starts, it checks each webhook. The webhook has to exist, its channel's name has to contain the ranking's word (`#great-seeds` for Great, `#instant-complete-seeds` for Instant Complete), and no two rankings can share a channel. A ranking that fails is blocked, with the reason shown, so nothing gets posted to the wrong place. The bot also confirms where each post actually landed, and if a webhook was moved since the check, it deletes the post and blocks that ranking. Run `/checksetup` after changing webhooks.
 
 Duplicates are blocked for everyone. Seeds are compared ignoring capital letters and spaces, so `Ab12 Cd` and `ab12cd` count as the same seed. If someone submits a seed that's already in, the bot tells them its ranking, who submitted it, and links to the post.
 
@@ -37,6 +41,7 @@ Duplicates are blocked for everyone. Seeds are compared ignoring capital letters
 | Command | Who | What it does |
 |---|---|---|
 | `/panel` | Admins (Manage Server) | Posts the submission panel in the current channel |
+| `/checksetup` | Admins (Manage Server) | Re-checks every webhook and shows which channel each ranking posts to |
 | `/lookup seed` | Everyone | Shows whether a seed is already catalogued, and why it got that ranking |
 | `/list [ranking] [page]` | Everyone | Browse seeds, 25 per page |
 | `/stats` | Everyone | Number of seeds in each ranking |
@@ -60,7 +65,8 @@ Duplicates are blocked for everyone. Seeds are compared ignoring capital letters
    ```bash
    python bot.py
    ```
-6. **Post the panel.** In the channel where people should submit seeds (for example `#submit-a-seed`), type `/panel`, then pin the message. The panel keeps working after the bot restarts. You only post it once.
+6. **Check the channels.** The console lists each ranking and its channel, and marks any problem as BLOCKED. You can also run `/checksetup` in Discord.
+7. **Post the panel.** In the channel where people should submit seeds (for example `#submit-a-seed`), type `/panel`, then pin the message. The panel keeps working after the bot restarts. You only post it once.
 
 The bot only answers while `python bot.py` is running. To keep it online all the time, run it on an always-on PC, a Raspberry Pi, or a bot host.
 

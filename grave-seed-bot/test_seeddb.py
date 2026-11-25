@@ -55,3 +55,10 @@ def test_old_database_gets_images_column(tmp_path):
     c.commit(); c.close()
     d = SeedDB(str(p))
     assert d.get("old").images is None
+
+def test_settings_roundtrip():
+    d = db()
+    assert d.get_setting("channels", {}) == {}
+    d.set_setting("channels", {"good": {"channel_id": 1, "webhook_url": "u"}})
+    d.set_setting("channels", {"good": {"channel_id": 2, "webhook_url": "v"}})
+    assert d.get_setting("channels")["good"]["channel_id"] == 2

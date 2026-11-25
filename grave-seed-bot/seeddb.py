@@ -1,6 +1,7 @@
 """SQLite storage for the Grave Without a Stone seed catalogue."""
 import csv
 import io
+import json
 import sqlite3
 import time
 from dataclasses import dataclass
@@ -61,6 +62,8 @@ class SeedDB:
                 images TEXT
             )"""
         )
+        self.conn.execute(
+            "CREATE TABLE IF NOT EXISTS settings (key TEXT PRIMARY KEY, value TEXT NOT NULL)")
         cols = {r[1] for r in self.conn.execute("PRAGMA table_info(seeds)")}
         if "images" not in cols:  # databases made before image support
             self.conn.execute("ALTER TABLE seeds ADD COLUMN images TEXT")
@@ -73,6 +76,16 @@ class SeedDB:
         d = dict(r)
         d.pop("seed_key", None)
         return Seed(**d)
+
+    def get_setting(self, key: str, default=None):
+        r = self.conn.execute("SELECT value FROM settings WHERE key = ?", (key,)).fetchone()
+        return json.loads(r["value"]) if r else default
+
+    def set_setting(self, key: str, value) -> None:
+        self.conn.execute(
+            "INSERT INTO settings (key, value) VALUES (?, ?) "
+            "ON CONFLICT(key) DO UPDATE SET value = excluded.value", (key, json.dumps(value)))
+        self.conn.commit()
 
     def get(self, seed: str) -> Optional[Seed]:
         r = self.conn.execute(

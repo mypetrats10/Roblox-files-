@@ -9,7 +9,9 @@ A Discord bot that keeps one shared database of seeds and posts each new seed to
 | Great | #great-seeds |
 | Amazing | #amazing-seeds |
 | Perfect | #perfect-seeds |
-| Instant Complete | #instant-complete-seeds (create this one; the name must contain "instant") |
+| Instant Complete | #instant-complete-seeds |
+
+`/setup` reuses channels you already have (any channel whose name contains "seed" and the ranking's word, such as `#great-seeds`) and creates the rest, along with a `#submit-a-seed` channel for the panel. It makes all the webhooks itself.
 
 ## Submitting seeds
 
@@ -32,7 +34,7 @@ Clicking a ranking opens a form:
 
 - **One message per seed.** The details and all the images sit together in one card, coloured by ranking. Nothing is split across messages and no image appears twice.
 - **One name.** Every post uses the same name and picture (the bot's, or `BOT_NAME`), so Discord groups back-to-back posts under a single header.
-- **Always the right channel.** When the bot starts, it checks each webhook. The webhook has to exist, its channel's name has to contain the ranking's word (`#great-seeds` for Great, `#instant-complete-seeds` for Instant Complete), and no two rankings can share a channel. A ranking that fails is blocked, with the reason shown, so nothing gets posted to the wrong place. The bot also confirms where each post actually landed, and if a webhook was moved since the check, it deletes the post and blocks that ranking. Run `/checksetup` after changing webhooks.
+- **Always the right channel.** `/setup` records which channel belongs to each ranking. When the bot starts, it checks every webhook still posts to that channel. If someone deletes a webhook, the bot makes a new one by itself. If a webhook gets moved, or its channel is deleted, that ranking is blocked with the reason shown until an admin runs `/setup` again, so nothing lands in the wrong place. The bot also checks where each post actually landed, and deletes it if it ended up somewhere else.
 
 Duplicates are blocked for everyone. Seeds are compared ignoring capital letters and spaces, so `Ab12 Cd` and `ab12cd` count as the same seed. If someone submits a seed that's already in, the bot tells them its ranking, who submitted it, and links to the post.
 
@@ -40,8 +42,8 @@ Duplicates are blocked for everyone. Seeds are compared ignoring capital letters
 
 | Command | Who | What it does |
 |---|---|---|
-| `/panel` | Admins (Manage Server) | Posts the submission panel in the current channel |
-| `/checksetup` | Admins (Manage Server) | Re-checks every webhook and shows which channel each ranking posts to |
+| `/setup` | Admins (Manage Server) | Finds or creates the seed channels, makes their webhooks, and posts and pins the panel. Safe to run again: it reuses everything and repairs what's broken |
+| `/checksetup` | Admins (Manage Server) | Shows which channel each ranking posts to, and any problems |
 | `/lookup seed` | Everyone | Shows whether a seed is already catalogued, and why it got that ranking |
 | `/list [ranking] [page]` | Everyone | Browse seeds, 25 per page |
 | `/stats` | Everyone | Number of seeds in each ranking |
@@ -50,13 +52,13 @@ Duplicates are blocked for everyone. Seeds are compared ignoring capital letters
 
 ## Setup
 
-1. **Create the bot.** Go to https://discord.com/developers/applications, click New Application, open **Bot**, and click **Reset Token**. Copy the token.
-2. **Invite it.** Open **OAuth2 → URL Generator** and tick `bot` and `applications.commands`. Open the generated URL and pick your server. The bot needs no extra permissions because it posts through webhooks.
-3. **Make the webhooks.** For each of the six channels: Edit Channel → Integrations → Webhooks → New Webhook → Copy Webhook URL.
-4. **Configure.** Copy `.env.example` to `.env` and paste in the token and the six webhook URLs. Optionally:
+You only paste one thing: the bot token. The bot makes its own channels and webhooks.
+
+1. **Create the bot.** Go to https://discord.com/developers/applications, click **New Application**, open **Bot**, and click **Reset Token**. Copy the token.
+2. **Configure.** Copy `.env.example` to `.env` and paste the token after `DISCORD_TOKEN=`. Optionally:
    - `GUILD_ID`: your server's ID, so the commands show up straight away. Without it they can take up to an hour to appear.
    - `MAPS`: a comma-separated list of the game's maps. The Instant Complete form then shows a dropdown instead of a text box (25 maps at most).
-5. **Run it.** You need Python 3.10 or newer.
+3. **Run it.** You need Python 3.10 or newer.
 
    ```bash
    pip install -r requirements.txt
@@ -65,16 +67,18 @@ Duplicates are blocked for everyone. Seeds are compared ignoring capital letters
    ```bash
    python bot.py
    ```
-6. **Check the channels.** The console lists each ranking and its channel, and marks any problem as BLOCKED. You can also run `/checksetup` in Discord.
-7. **Post the panel.** In the channel where people should submit seeds (for example `#submit-a-seed`), type `/panel`, then pin the message. The panel keeps working after the bot restarts. You only post it once.
+4. **Invite it.** The bot's window prints an invite link. Open it and choose your server. The link already asks for the permissions the bot needs: Manage Channels, Manage Webhooks and Manage Messages, plus the basics.
+5. **Run `/setup`** in your server. The bot replies with each ranking's channel and a link to the pinned panel. That's everything.
+
+Channels the bot creates are read-only for members, so only seed posts appear there. Channels you already had are left as they are.
 
 The bot only answers while `python bot.py` is running. To keep it online all the time, run it on an always-on PC, a Raspberry Pi, or a bot host.
 
 ## Sharing it
 
-To give the bot to another server, send them this folder **without** your `.env` and `seeds.db`. They follow the setup steps with their own bot and webhooks.
+Each running copy of the bot keeps one catalogue for one server. To give the bot to another server, send them this folder **without** your `.env` and `seeds.db`. They follow the setup steps with their own bot.
 
-Keep the token and webhook URLs private. Anyone who has a webhook URL can post into that channel. If one leaks, delete the webhook in Discord and make a new one.
+Keep the token private. If it leaks, reset it in the developer portal and put the new one in `.env`. The webhook links the bot makes are stored in `seeds.db`, so keep that file private too. If one leaks, delete that webhook in the channel's settings, and the bot makes a fresh one the next time it starts or someone runs `/checksetup`.
 
 ## Backups
 

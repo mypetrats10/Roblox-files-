@@ -11,15 +11,32 @@ A Discord bot that keeps one shared database of seeds and posts each new seed to
 | Perfect | #perfect-seeds |
 | Instant Complete | #instant-complete-seeds (create this one) |
 
-Every submission needs a **reason** for its ranking. An **Instant Complete** seed also needs the **map**, the **building**, and **where in that building**. The bot won't save it until all three are filled in.
+## Submitting seeds
 
-Duplicates are blocked for everyone. Seeds are compared ignoring capital letters and spaces, so `Ab12 Cd` and `ab12cd` count as the same seed. If someone tries to submit a seed that's already in, the bot tells them its ranking, who submitted it, and links to the post.
+Seeds are submitted from a **panel**: a message with one button per ranking. Nobody needs to type a command.
+
+```
+ Seed Submissions
+ [Mediocre] [Good] [Great] [Amazing] [Perfect]
+ [Instant Complete] [Look up a seed]
+```
+
+Clicking a ranking opens a form:
+
+| Ranking | Form fields |
+|---|---|
+| Mediocre to Perfect | Seed, why it's that ranking, images (optional, up to 10) |
+| Instant Complete | Seed, map, building, where the flare gun is, images (optional, up to 10) |
+
+The images are attached to the seed's post in its ranking channel.
+
+Duplicates are blocked for everyone. Seeds are compared ignoring capital letters and spaces, so `Ab12 Cd` and `ab12cd` count as the same seed. If someone submits a seed that's already in, the bot tells them its ranking, who submitted it, and links to the post.
 
 ## Commands
 
 | Command | Who | What it does |
 |---|---|---|
-| `/submit seed ranking reason [map building location]` | Everyone | Adds a seed and posts it to its ranking channel |
+| `/panel` | Admins (Manage Server) | Posts the submission panel in the current channel |
 | `/lookup seed` | Everyone | Shows whether a seed is already catalogued, and why it got that ranking |
 | `/list [ranking] [page]` | Everyone | Browse seeds, 25 per page |
 | `/stats` | Everyone | Number of seeds in each ranking |
@@ -33,7 +50,7 @@ Duplicates are blocked for everyone. Seeds are compared ignoring capital letters
 3. **Make the webhooks.** For each of the six channels: Edit Channel → Integrations → Webhooks → New Webhook → Copy Webhook URL.
 4. **Configure.** Copy `.env.example` to `.env` and paste in the token and the six webhook URLs. Optionally:
    - `GUILD_ID`: your server's ID, so the commands show up straight away. Without it they can take up to an hour to appear.
-   - `MAPS`: a comma-separated list of the game's maps. People get them as suggestions when they type the map.
+   - `MAPS`: a comma-separated list of the game's maps. The Instant Complete form then shows a dropdown instead of a text box (25 maps at most).
 5. **Run it.** You need Python 3.10 or newer.
 
    ```bash
@@ -43,6 +60,7 @@ Duplicates are blocked for everyone. Seeds are compared ignoring capital letters
    ```bash
    python bot.py
    ```
+6. **Post the panel.** In the channel where people should submit seeds (for example `#submit-a-seed`), type `/panel`, then pin the message. The panel keeps working after the bot restarts. You only post it once.
 
 The bot only answers while `python bot.py` is running. To keep it online all the time, run it on an always-on PC, a Raspberry Pi, or a bot host.
 

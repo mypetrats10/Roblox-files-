@@ -36,6 +36,7 @@ class Seed:
     created_at: int
     message_id: Optional[int]
     message_url: Optional[str]
+    images: Optional[str] = None  # newline-separated image URLs from the channel post
 
 
 class SeedDB:
@@ -56,9 +57,13 @@ class SeedDB:
                 submitter_name TEXT NOT NULL,
                 created_at INTEGER NOT NULL,
                 message_id INTEGER,
-                message_url TEXT
+                message_url TEXT,
+                images TEXT
             )"""
         )
+        cols = {r[1] for r in self.conn.execute("PRAGMA table_info(seeds)")}
+        if "images" not in cols:  # databases made before image support
+            self.conn.execute("ALTER TABLE seeds ADD COLUMN images TEXT")
         self.conn.commit()
 
     @staticmethod
@@ -87,7 +92,7 @@ class SeedDB:
             (x or "").strip() for x in (map, building, location)
         ):
             raise ValueError(
-                "Instant-complete seeds need the map, the building, and where in the building."
+                "Instant-complete seeds need the map, the building, and where the flare gun is."
             )
         if self.get(seed):
             raise KeyError("duplicate")
@@ -105,9 +110,10 @@ class SeedDB:
             self.conn.execute("SELECT * FROM seeds WHERE id = ?", (cur.lastrowid,)).fetchone()
         )
 
-    def set_message(self, seed_id: int, message_id: int, message_url: str):
-        self.conn.execute("UPDATE seeds SET message_id = ?, message_url = ? WHERE id = ?",
-                          (message_id, message_url, seed_id))
+    def set_message(self, seed_id: int, message_id: int, message_url: str, images=()):
+        self.conn.execute(
+            "UPDATE seeds SET message_id = ?, message_url = ?, images = ? WHERE id = ?",
+            (message_id, message_url, "\n".join(images) or None, seed_id))
         self.conn.commit()
 
     def remove(self, seed: str) -> Optional[Seed]:
@@ -138,10 +144,11 @@ class SeedDB:
     def export_csv(self) -> str:
         buf = io.StringIO()
         w = csv.writer(buf)
-        w.writerow(["seed", "tier", "reason", "map", "building", "location",
-                    "submitted_by", "submitted_at_utc"])
+        w.writerow(["seed", "tier", "reason", "map", "building", "flare_gun_location",
+                    "images", "post", "submitted_by", "submitted_at_utc"])
         for r in self.conn.execute("SELECT * FROM seeds ORDER BY tier, created_at"):
             w.writerow([r["seed"], TIERS[r["tier"]]["label"], r["reason"], r["map"] or "",
-                        r["building"] or "", r["location"] or "", r["submitter_name"],
+                        r["building"] or "", r["location"] or "", (r["images"] or "").replace("\n", " "),
+                        r["message_url"] or "", r["submitter_name"],
                         time.strftime("%Y-%m-%d %H:%M", time.gmtime(r["created_at"]))])
         return buf.getvalue()

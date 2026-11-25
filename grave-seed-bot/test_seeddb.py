@@ -34,3 +34,24 @@ def test_remove_counts_export_message():
     assert "s1,Perfect,all loot" in d.export_csv()
     assert d.remove("S1").seed == "s1" and d.get("s1") is None
     assert len(d.list()) == 1 and len(d.list(tier="mediocre")) == 1
+
+def test_images_saved_and_exported():
+    d = db()
+    s = d.add("img1", "amazing", "three chests", 1, "a")
+    d.set_message(s.id, 5, "https://discord.com/channels/1/2/5",
+                  ["https://cdn.example/a.png", "https://cdn.example/b.png"])
+    assert d.get("img1").images.split("\n") == ["https://cdn.example/a.png", "https://cdn.example/b.png"]
+    assert "https://cdn.example/a.png https://cdn.example/b.png" in d.export_csv()
+
+def test_old_database_gets_images_column(tmp_path):
+    import sqlite3
+    p = tmp_path / "old.db"
+    c = sqlite3.connect(p)
+    c.execute("""CREATE TABLE seeds (id INTEGER PRIMARY KEY AUTOINCREMENT, seed TEXT NOT NULL,
+        seed_key TEXT NOT NULL UNIQUE, tier TEXT NOT NULL, reason TEXT NOT NULL, map TEXT,
+        building TEXT, location TEXT, submitter_id INTEGER NOT NULL, submitter_name TEXT NOT NULL,
+        created_at INTEGER NOT NULL, message_id INTEGER, message_url TEXT)""")
+    c.execute("INSERT INTO seeds VALUES (1,'old','old','good','r',NULL,NULL,NULL,1,'a',0,NULL,NULL)")
+    c.commit(); c.close()
+    d = SeedDB(str(p))
+    assert d.get("old").images is None
